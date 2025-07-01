@@ -31,8 +31,8 @@ public class WeatherController {
 
     @GetMapping("/weather/service")
     public String weatherService(@RequestParam("city") String city){
-        return chatClient.prompt("今天的天气")
-                .tools("weatherService")
+        return chatClient.prompt(city + "今天的天气")
+                .tools("weatherFunction")
                 .call()
                 .content();
     }
