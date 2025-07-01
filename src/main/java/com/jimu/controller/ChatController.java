@@ -3,6 +3,7 @@ package com.jimu.controller;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.memory.ChatMemory;
 import org.springframework.ai.chat.memory.ChatMemoryRepository;
+import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -18,18 +19,13 @@ public class ChatController {
     @Autowired
     public ChatClient chatClient;
 
-    @Autowired
-    public ChatMemory chatMemory;
-
     // 用于测试
-    @GetMapping("/test")
-    public String chat(){
-
-
+    @GetMapping("/chat")
+    public String chat(String userText) {
 
         return chatClient
                 .prompt()
-                .user("hello JIMU" )
+                .user(userText)
                 .call()
                 .content();
     }
